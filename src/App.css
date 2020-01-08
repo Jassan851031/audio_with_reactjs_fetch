@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+body{
+  background-color: black;
+}
+
+.list-group-item{
+  background-color: black;
+  color: aliceblue;
+  border-style: groove;
+  border-color: white;
+}
