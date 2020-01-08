@@ -44,6 +44,10 @@ body{
 .list-group-item{
   background-color: black;
   color: aliceblue;
-  border-style: groove;
   border-color: white;
+}
+
+button{
+  width: 100px;
+  height: 60px;
 }

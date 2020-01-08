@@ -7,14 +7,35 @@ class App extends Component {
     super(props);
     this.state = {
       reproducing: false,
-      songs: [
-        { id: 1, category: "game", name: "Mario Castle", url: "files/mario/songs/castle.mp3" },
-        { id: 2, category: "game", name: "Mario Star", url: "files/mario/songs/hurry-starman.mp3" },
-        { id: 3, category: "game", name: "Mario Overworld", url: "files/mario/songs/overworld.mp3" }
-      ]
+      songs: []
     }
     this.player = null;
     this.actualIndex = null;
+  }
+
+  componentDidMount(){
+    console.log("Despues de renderizar el componente");
+    this.getSongs('https://assets.breatheco.de/apis/sound/songs');
+  }
+
+  componentDidUpdate(){
+
+  }
+
+  componentWillUnmount(){
+
+  }
+
+
+  getSongs(url){
+    fetch(url)
+      .then(resp => resp.json())
+      .then(data => {
+        this.setState({
+          songs: data
+        })
+      })
+      .catch(error => console.log(error));
   }
 
   dj(e, i) {
@@ -37,14 +58,14 @@ class App extends Component {
     }
   }
 
-  // Continua la reproduccion desde donde se quedo
+  // Continua la reproducion desde donde se quedo
   continue(i) {
     this.actualIndex = i;
     this.player = document.querySelectorAll("audio")[i];
     this.play();
   }
 
-  // Empieza la reproduccion desde el principio
+  // Empieza la reproducion desde el principio
   playItem(i) {
     this.actualIndex = i;
     this.player = document.querySelectorAll("audio")[i];
